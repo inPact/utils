@@ -1,6 +1,6 @@
 {
   "name": "@tabit/utils",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "general utility functions",
   "main": "index.js",
   "scripts": {
@@ -9,13 +9,17 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "async-lock": "^1.2.0",
-    "bluebird": "latest",
+    "async-lock": "0.3.9",
+    "bluebird": "3.5.0",
     "debug": "^4.1.1",
-    "lodash": "latest",
-    "mongoose": "^5.4.20",
-    "ms": "latest",
+    "lodash": "3.10.1",
+    "moment-timezone": "0.5.17",
+    "mongoose": "5.3.1",
+    "ms": "^0.7.2",
     "randomstring": "^1.1.5",
-    "winston": "^3.2.1"
+    "winston": "1.0.2"
+  },
+  "resolutions": {
+    "moment-timezone": "0.5.17"
   }
 }

@@ -3,6 +3,7 @@ const Readable = require('stream').Readable;
 const externalUtils = {
     trace: require('./mongoose_trace'),
     lock: require('./lock'),
+    time: require('./time'),
 };
 
 _.assign(this,
