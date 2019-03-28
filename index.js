@@ -1,10 +1,9 @@
 const _ = require('lodash');
 const Readable = require('stream').Readable;
-const externalUtils = {
-    trace: require('./mongoose_trace'),
-    lock: require('./lock'),
-    time: require('./time'),
-};
+
+this.trace = require('./mongoose_trace');
+this.lock = require('./lock');
+this.time = require('./time');
 
 _.assign(this,
     require('./entities'),
@@ -13,7 +12,7 @@ _.assign(this,
     require('./strings'),
     require('./fs'),
     require('./math'),
-    require('./reflect'), externalUtils);
+    require('./reflect'));
 
 /**
  * Create hash-table from array of objects
@@ -531,4 +530,4 @@ exports.diff = function difference(first, second) {
 
 // leave this line last
 let omit = _.functions(_).filter(funcName => funcName !== 'toString');
-exports.moredash = _.assign(_.runInContext().mixin(_.omit(this, omit)), externalUtils);
+exports.moredash = _.assign(_.runInContext(), _.omit(this, omit));
