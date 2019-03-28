@@ -6,7 +6,7 @@ module.exports = {
         if (typeof namespace === 'function')
             namespace = namespace.namespace;
 
-        if (!debug.enabled(namespace) || !debug.enabled('ros:trace:mongo'))
+        if (!debug.enabled(namespace) || !debug.enabled('utils:trace:mongo'))
             return func();
 
         const wasEnabled = mongoose.get('debug');

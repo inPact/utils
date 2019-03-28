@@ -1,6 +1,6 @@
 const Promise = require('bluebird');
 const lock = new (require('async-lock'))({ Promise: Promise });
-const debug = require('debug')('ros:utils');
+const debug = require('debug')('utils');
 const randomstring = require('randomstring');
 const logger = require('winston');
 
