@@ -1,0 +1,21 @@
+{
+  "name": "@tabit/utils",
+  "version": "1.0.0",
+  "description": "general utility functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "async-lock": "^1.2.0",
+    "bluebird": "latest",
+    "debug": "^4.1.1",
+    "lodash": "latest",
+    "mongoose": "^5.4.20",
+    "ms": "latest",
+    "randomstring": "^1.1.5",
+    "winston": "^3.2.1"
+  }
+}
