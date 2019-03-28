@@ -1,9 +1,9 @@
 const _ = require('lodash');
 const Readable = require('stream').Readable;
 
-this.trace = require('./mongoose_trace');
-this.lock = require('./lock');
-this.time = require('./time');
+exports.trace = require('./mongoose_trace');
+exports.lock = require('./lock');
+exports.time = require('./time');
 
 _.assign(this,
     require('./entities'),
