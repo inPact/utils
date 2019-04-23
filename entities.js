@@ -7,7 +7,7 @@ module.exports = {
         if (!obj)
             return false;
 
-        if (obj instanceof ObjectId)
+        if (obj instanceof ObjectId || obj._bsontype === 'ObjectID')
             return true;
 
         if (typeof obj === 'string')

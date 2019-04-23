@@ -383,24 +383,29 @@ exports.unset = function (object, path) {
     delete object[prop];
 };
 
+function _isIterable(obj) {
+    return _.isPlainObject(obj) || _.isArray(obj);
+}
+
 /**
  * Flatten javascript objects into a single-depth object (from https://gist.github.com/penguinboy/762197)
  * @param obj - object to flatten
  */
 exports.flattenObject = function (obj) {
+    if (!_isIterable(obj)) return obj;
     let toReturn = {};
     for (let prop in obj) {
-        if (!obj.hasOwnProperty(prop)) continue;
+        if (!obj.hasOwnProperty(prop))
+            continue;
 
-        if (_.isPlainObject(obj[prop])) {
-            let flatObject = this.flattenObject(obj[prop]);
+        let flatObject = this.flattenObject(obj[prop]);
+        if (_isIterable(flatObject)) {
             for (let subProp in flatObject) {
                 if (!flatObject.hasOwnProperty(subProp)) continue;
-
-                toReturn[prop + '.' + subProp] = flatObject[subProp];
+                toReturn[`${prop}.${subProp}`] = flatObject[subProp];
             }
         } else {
-            toReturn[prop] = obj[prop];
+            toReturn[`${prop}`] = flatObject;
         }
     }
     return toReturn;
