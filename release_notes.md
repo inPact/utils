@@ -1,4 +1,4 @@
-### 1.2.1
+### 1.2.2
 * Appending new functions is now done explicitly to reduce chaos
 
 ## 1.2.0
