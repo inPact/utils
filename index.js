@@ -503,6 +503,7 @@ const self = {
     append(obj) {
         _.assign(this, obj);
         this.moredash = buildMoredash();
+        return this;
     }
 };
 
