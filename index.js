@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const Readable = require('stream').Readable;
 
-const util = {
+const self = {
     trace: require('./mongoose_trace'),
     lock: require('./lock'),
     time: require('./time'),
@@ -495,17 +495,21 @@ const util = {
         });
     },
 
-    get moredash() {
-        if (!this._moredash && !this.building) {
-            this.building = true;
-            let omit = _.functions(_).filter(funcName => funcName !== 'toString');
-            this._moredash = _.assign(_.runInContext(), _.omit(this, omit));
-            this.building = false;
-        }
-
-        return this._moredash;
+    /**
+     * Append additional functions to the utility and moredash wrappers (functions with identical names
+     * will overrite existing functions)
+     * @param obj {Object} - an object containing the functions and properties to append
+     */
+    append(obj) {
+        _.assign(this, obj);
+        this.moredash = buildMoredash();
     }
 };
+
+function buildMoredash() {
+    let omit = _.functions(_).filter(funcName => funcName !== 'toString');
+    return _.assign(_.runInContext(), _.omit(self, omit));
+}
 
 function traverseEntry(obj, val, key, func, result, { modifyObject } = {}) {
     let res = func(val, key, obj);
@@ -541,13 +545,14 @@ function baseToString(value) {
     return (result == '0' && (1 / value) == -Infinity) ? '-0' : result;
 }
 
-_.assign(util,
+_.assign(self,
     require('./entities'),
     require('./errors'),
     require('./promises'),
     require('./strings'),
     require('./fs'),
     require('./math'),
-    require('./reflect'));
+    require('./reflect'),
+    { moredash: buildMoredash() });
 
-module.exports = util;
+module.exports = self;

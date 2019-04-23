@@ -18,17 +18,18 @@ describe('should include: ', function () {
         [2,3,4].should.include.ordered.members(moredash([1,2,3]).map(x => x+1).value());
     });
 
-    it('any functions added before retrieving moredash', async function () {
+    it('appended functions', async function () {
         let moreFuncs = {
             a(){
                 return 'hi';
             }
         };
 
-        delete require.cache[require.resolve('../')];
         let utils = require('../');
-        _.assign(utils, moreFuncs);
+        utils.append(moreFuncs);
+        should.exist(utils.a);
         should.exist(utils.moredash.a);
+        utils.a().should.equal('hi');
         utils.moredash.a().should.equal('hi');
     });
 });
