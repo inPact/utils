@@ -1,5 +1,5 @@
 const _ = require('lodash');//.runInContext();
-const logger = require('winston');
+const logger = require('winston/lib/winston');
 
 exports.formatError = function (e, options) {
     let error = logger.exception.getAllInfo(e);

@@ -74,10 +74,10 @@ module.exports = {
         return _(strings)
             .map((s, index) => {
                 if (index === 0)
-                    return _.trimRight(s, separator);
+                    return _.trimEnd(s, separator);
 
                 if (index === (strings.length - 1))
-                    return _.trimLeft(s, separator);
+                    return _.trimStart(s, separator);
 
                 return _.trim(s, separator);
             })

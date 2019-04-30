@@ -1,5 +1,5 @@
 const ObjectId = require('mongoose').Types.ObjectId;
-const logger = require('winston');
+const logger = require('winston/lib/winston');
 const _ = require('lodash');
 
 module.exports = {

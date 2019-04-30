@@ -18,7 +18,7 @@ describe('should include: ', function () {
         [2,3,4].should.include.ordered.members(moredash([1,2,3]).map(x => x+1).value());
     });
 
-    it('appended functions', async function () {
+    it('included utility functions', async function () {
         let moreFuncs = {
             a(){
                 return 'hi';
@@ -26,7 +26,7 @@ describe('should include: ', function () {
         };
 
         let utils = require('../');
-        utils.append(moreFuncs);
+        utils.includeUtils(moreFuncs);
         should.exist(utils.a);
         should.exist(utils.moredash.a);
         utils.a().should.equal('hi');

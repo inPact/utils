@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const lock = new (require('async-lock'))({ Promise: Promise });
 const debug = require('debug')('utils');
 const randomstring = require('randomstring');
-const logger = require('winston');
+const logger = require('winston/lib/winston');
 
 const MIN_LOCKS_FOR_DEBUG = process.env.MIN_DOUBLE_CHECK_LOCKS_FOR_DEBUG || 100;
 let counter = 0;
