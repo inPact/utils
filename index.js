@@ -30,7 +30,7 @@ _.assign(self, {
      * will overrite existing functions)
      * @param obj {Object} - an object containing the functions and properties to append
      */
-    includeUtils(obj) {
+    use(obj) {
         _.assign(this, obj);
         this.moredash = buildMoredash();
         return this;

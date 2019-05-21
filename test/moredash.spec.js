@@ -26,7 +26,7 @@ describe('should include: ', function () {
         };
 
         let utils = require('../');
-        utils.includeUtils(moreFuncs);
+        utils.use(moreFuncs);
         should.exist(utils.a);
         should.exist(utils.moredash.a);
         utils.a().should.equal('hi');
