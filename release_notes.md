@@ -1,8 +1,5 @@
-## 2.1.2
-* more lodash-4 upgrade fixes
-
-## 2.1.1
-* lodash-4 upgrade fixes
+## 3.0.0
+* lodash-4 abandoned
 
 ## 2.1.0
 * renamed 'includeUtils' to 'use'
