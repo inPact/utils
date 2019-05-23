@@ -83,7 +83,7 @@ module.exports = {
      * @param source
      */
     cloneDeepWithObjectIds(source) {
-        return _.cloneDeep(source, value => {
+        return _.cloneDeepWith(source, value => {
             if (value instanceof ObjectId)
                 return new ObjectId(value.toString())
         })

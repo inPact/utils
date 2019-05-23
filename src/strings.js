@@ -95,7 +95,7 @@ module.exports = {
     },
 
     pascalCase(str) {
-        return _.capitalize(_.camelCase(str));
+        return _.upperFirst(_.camelCase(str));
     },
 
     toUpperSnakeCase(str) {
