@@ -34,7 +34,7 @@ module.exports = {
     },
 
     mergeGroups(first, second, firstKey, secondKey) {
-        return _.mergeWith(first, second, (x, y) => {
+        return _.merge(first, second, (x, y) => {
             let val = {};
             val[firstKey] = x;
             val[secondKey] = y;
@@ -212,7 +212,7 @@ module.exports = {
      * Pulls properties from @source by running @picker on source. Matched properties are removed from @source
      * and returned as an object.
      * @param source - the source object form which to move.
-     * @param properties - the names of the properties to pull
+     * @param picker - see lodash docs for _.pick
      */
     pullProperties(source, ...properties) {
         let result = {};
@@ -254,7 +254,7 @@ module.exports = {
      * @param {Array<Object>|...Object|...Array<Array<Object>>} objects -- the objects to sum
      */
     sumObjects(...objects) {
-        return _.mergeWith({}, ...objects, sumNumbers)
+        return _.merge({}, ...objects, sumNumbers)
     },
 
     /**
@@ -264,7 +264,7 @@ module.exports = {
      * @returns {Array.<Object>}
      */
     sumArrays(...arrays) {
-        return _.mergeWith(...arrays, sumNumbers)
+        return _.merge(...arrays, sumNumbers)
     },
 
     /**
@@ -309,7 +309,7 @@ module.exports = {
             .map(x => this.toHashtable(x, key))
             .value();
 
-        return _({}).mergeWith(...maps, customizer).values().value();
+        return _({}).merge(...maps, customizer).values().value();
     },
 
     /**
@@ -332,7 +332,7 @@ module.exports = {
             ? (first, second) => second === null ? undefined : second
             : undefined;
 
-        return second.map(entry => _.assignWith({}, firstMap[entry[key]], entry, customizer));
+        return second.map(entry => _.assign({}, firstMap[entry[key]], entry, customizer));
     },
 
     isEmptyRecursive(object) {
