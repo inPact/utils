@@ -203,7 +203,7 @@ module.exports = {
      * @param picker - see lodash docs for _.pick
      */
     moveProperties(source, target, picker) {
-        let properties = _.isFunction(picker) ?  _.pickBy(source, picker) : _.pick(source, picker);
+        let properties = _.pick(source, picker);
         _.merge(target, properties);
         _.forOwn(properties, (val, key) => delete source[key]);
     },

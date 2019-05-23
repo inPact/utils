@@ -1,6 +1,3 @@
-## 2.1.2
-* more lodash-4 upgrade fixes
-
 ## 2.1.1
 * lodash-4 upgrade fixes
 
