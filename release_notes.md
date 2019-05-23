@@ -1,3 +1,6 @@
+## 3.0.0
+* lodash-4 abandoned
+
 ## 2.1.0
 * renamed 'includeUtils' to 'use'
 * added 'sumSafe' method that mimics lodash-3 'sum' behavior that was broken in lodash-4

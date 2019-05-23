@@ -47,6 +47,6 @@ module.exports = {
             }
             : x => isNaN(x) ? 0 : Number(x);
 
-        return _.sumBy(collection, safeIteratee);
+        return _.sum(collection, safeIteratee);
     }
 };
