@@ -490,9 +490,11 @@ module.exports = {
      * source: https://gist.github.com/Yimiprod/7ee176597fef230d1451
      */
     diff(first, second) {
-        return _.transform(first, (result, value, key) => {
+        return _.reduce(first, (result, value, key) => {
             if (!_.isEqual(value, second[key]))
                 result[key] = _.isObject(value) && _.isObject(second[key]) ? this.diff(value, second[key]) : value;
+
+            return result;
         }, {});
     },
 

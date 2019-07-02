@@ -33,4 +33,38 @@ describe('extend: ', function () {
             x: ['y', 'z']
         })
     });
+
+    it('diff should return diff as object', async function () {
+        let obj1 = {
+            a: { b: { c: 3 }, r: 1 },
+            x: ['y', 'z']
+        };
+
+        let obj2 = {
+            a: { b: { d: 4 }, r: 1 },
+            x: ['y', 'q']
+        };
+
+        let res = extend.diff(obj1, obj2);
+        res.should.deep.equal({
+            a: { b: { c: 3 } },
+            x: { 1: 'z' }
+        });
+
+        obj1 = {
+            a: { b: ['c', 'd'] },
+            x: ['y', 'z']
+        };
+
+        obj2 = {
+            a: { b: ['d'] },
+            x: ['y', 'q']
+        };
+
+        res = extend.diff(obj1, obj2);
+        res.should.deep.equal({
+            a: { b: { 0: 'c', 1: 'd' } },
+            x: { 1: 'z' }
+        });
+    });
 });
