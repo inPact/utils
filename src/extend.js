@@ -493,7 +493,7 @@ module.exports = {
         return _.transform(first, (result, value, key) => {
             if (!_.isEqual(value, second[key]))
                 result[key] = _.isObject(value) && _.isObject(second[key]) ? this.diff(value, second[key]) : value;
-        });
+        }, {});
     },
 
     /**

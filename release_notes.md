@@ -1,3 +1,6 @@
+### 3.0.2
+* diff: force results into object (strange behavior on linux occasionally treats object as array)
+
 ### 3.0.1
 * flattenObjects no longer flattens out the contents of arrays
 
