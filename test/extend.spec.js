@@ -20,4 +20,17 @@ describe('extend: ', function () {
         res = extend.getFirst(obj);
         should.not.exist(res);
     });
+
+    it('flattenObject should flatten nested objects but not modify arrays', async function () {
+        let obj = {
+            a: { b: { c: 3 } },
+            x: ['y', 'z']
+        };
+
+        let res = extend.flattenObject(obj);
+        res.should.deep.equal({
+            'a.b.c': 3,
+            x: ['y', 'z']
+        })
+    });
 });

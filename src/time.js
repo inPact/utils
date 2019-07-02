@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const logger = require('winston/lib/winston');
+const logger = require('winston');
 const moment = require('moment-timezone');
 const minutesInDay = 24 * 60;
 

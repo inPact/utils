@@ -359,26 +359,31 @@ module.exports = {
 
     /**
      * Flatten javascript objects into a single-depth object (from https://gist.github.com/penguinboy/762197)
+     * Arrays in the object are not modified.
      * @param obj - object to flatten
      */
     flattenObject(obj) {
-        if (!_isIterable(obj)) return obj;
-        let toReturn = {};
+        if (!_isIterable(obj))
+            return obj;
+
+        const result = {};
         for (let prop in obj) {
             if (!obj.hasOwnProperty(prop))
                 continue;
 
-            let flatObject = this.flattenObject(obj[prop]);
-            if (_isIterable(flatObject)) {
+            if (_.isPlainObject(obj[prop])) {
+                let flatObject = this.flattenObject(obj[prop]);
                 for (let subProp in flatObject) {
-                    if (!flatObject.hasOwnProperty(subProp)) continue;
-                    toReturn[`${prop}.${subProp}`] = flatObject[subProp];
+                    if (!flatObject.hasOwnProperty(subProp))
+                        continue;
+
+                    result[`${prop}.${subProp}`] = flatObject[subProp];
                 }
             } else {
-                toReturn[`${prop}`] = flatObject;
+                result[`${prop}`] = obj[prop];
             }
         }
-        return toReturn;
+        return result;
     },
 
     /**

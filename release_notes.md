@@ -1,5 +1,8 @@
-## 3.0.0
-* lodash-4 abandoned
+### 3.0.1
+* flattenObjects no longer flattens out the contents of arrays
+
+# 3.0.0
+* lodash-4 abandoned (revert to lodash-3)
 
 ## 2.1.0
 * renamed 'includeUtils' to 'use'
