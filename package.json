@@ -1,6 +1,6 @@
 {
   "name": "@tabit/utils",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "general utility functions",
   "main": "index.js",
   "scripts": {
