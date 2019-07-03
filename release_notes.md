@@ -1,3 +1,9 @@
+### 3.0.4
+* diff: change to _.each (strange behavior on linux occasionally treats object as array)
+
+### 3.0.3
+* diff: change to _.reduce (strange behavior on linux occasionally treats object as array)
+
 ### 3.0.2
 * diff: force results into object (strange behavior on linux occasionally treats object as array)
 
