@@ -1,3 +1,6 @@
+### 3.0.5
+* diff: revert back to _.transform (strange behavior on linux not resolved)
+
 ### 3.0.4
 * diff: change to _.each (strange behavior on linux occasionally treats object as array)
 
