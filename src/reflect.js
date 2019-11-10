@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     getCallStack() {
         let orig = Error.prepareStackTrace;
@@ -24,15 +26,46 @@ module.exports = {
     },
 
     /**
-     * Returns the line number from which this function was called
+     * Returns the line number from which this function was called, or from a previous frame if specified.
      * source: https://stackoverflow.com/questions/14172455/get-name-and-line-of-calling-function-in-node-js/14172822
+     * @param frame - further frames to go back if desired;
      */
-    getLineNumber() {
-        return this.getCallingFrame(1).getLineNumber();
+    getLineNumber(frame = 0) {
+        frame += 1;
+        return this.getCallingFrame(frame).getLineNumber();
     },
 
-    getCallingFunctionName() {
-        return this.getCallingFrame(1).getFunctionName();
+    /**
+     * Returns the file name from which this function was called, or from a previous frame if specified.
+     * @param frame - further frames to go back if desired;
+     */
+    getFileName(frame = 0) {
+        frame += 1;
+        return this.getCallingFrame(frame).getFileName();
+    },
+
+    /**
+     * Returns the name of the function from which this function was called, or from a previous frame if specified.
+     * @param frame - further frames to go back if desired;
+     */
+    getCallingFunctionName(frame = 0) {
+        frame += 1;
+        return this.getCallingFrame(frame).getFunctionName();
+    },
+
+    /**
+     * Returns the name of the function from which this function was called, or from a previous frame if specified.
+     * @param frame - further frames to go back if desired;
+     * @returns {string}
+     */
+    getCallingFunctionNameAndLocation(frame = 0) {
+        frame += 1;
+        const filepath = this.getFileName(frame);
+        const filename = path.basename(filepath);
+        const line = this.getLineNumber(frame);
+        const name = this.getCallingFunctionName(frame);
+        const location = `${filename}:${line}`;
+        return name ? `${name} at ${location}` : location;
     },
 
     getMethodsNames(obj) {

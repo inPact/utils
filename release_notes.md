@@ -1,3 +1,9 @@
+## 3.2.0
+* added reflect.getCallingFunctionNameAndLocation
+
+## 3.1.0
+* added reflect.getFunctionArguments
+
 ### 3.0.5
 * diff: revert back to _.transform (strange behavior on linux not resolved)
 
