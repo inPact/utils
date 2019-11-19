@@ -9,10 +9,12 @@ const extend = require('./src/extend'),
     reflect = require('./src/reflect'),
     trace = require('./src/mongoose_trace'),
     lock = require('./src/lock'),
-    time = require('./src/time');
+    time = require('./src/time'),
+    metrics = require("./src/metrics"),
+    jaegerMiddleware = require("./src/jaegerMiddleware");
 
 const self = {
-    trace, lock, time,
+    trace, lock, time, metrics, jaegerMiddleware,
     extend, entities, errors, promises, strings, fs, math, reflect,
     ...extend, ...entities, ...errors, ...promises, ...strings, ...fs, ...math, ...reflect
 };
