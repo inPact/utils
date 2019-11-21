@@ -77,7 +77,7 @@ class Metrics {
     span({name, id, parentId, tags = {}}) {
         const currSpan = spans.get(id);
         if (currSpan) {
-            return currSpan;
+            return currSpan.span;
         }
 
         const childOf = parentId ? spans.get(parentId) : undefined;
