@@ -74,12 +74,7 @@ class Metrics {
         });
     }
 
-    span({name, id, parentId, tags = {}}) {
-        const currSpan = spans.get(id);
-        if (currSpan) {
-            return currSpan.span;
-        }
-
+    startSpan({name, id, parentId, tags = {}}) {
         const childOf = parentId ? spans.get(parentId) : undefined;
         const span = this.tracer.startSpan(name, {childOf});
         spans.set(id, {name, span});
@@ -90,6 +85,14 @@ class Metrics {
             _finish();
         };
         return span;
+    }
+
+    span({name, id, parentId, tags = {}}) {
+        const currSpan = spans.get(id);
+        if (currSpan) {
+            return currSpan.span;
+        }
+        return this.startSpan({name, id, parentId, tags})
     }
 
     errorInc({organization, error}) {

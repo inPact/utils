@@ -9,7 +9,7 @@ const jaegerMiddleware = (req, res, next) => {
     const name = splitPath.filter(s => !s.match(/^\d/)).join("/");
     const ids = splitPath.filter(s => s.match(/^\d/));
     const id = ids.length ? ids[0] : name;
-    const span = Metrics.span({name, id});
+    const span = Metrics.startSpan({name, id});
     span.setTag("http.request.url", url);
     span.setTag("http.request.method", method);
     span.setTag("http.request.path", path);
