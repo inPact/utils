@@ -2,7 +2,7 @@ const initTracerFromEnv = require("jaeger-client").initTracerFromEnv;
 const client = require("prom-client");
 const PrometheusMetricsFactory = require("jaeger-client").PrometheusMetricsFactory;
 
-const serviceName = process.env.JAEGER_SERVICE_NAME;
+const serviceName = process.env.JAEGER_SERVICE_NAME || "JAEGER_SERVICE_NAME";
 const metrics = new PrometheusMetricsFactory(client, serviceName);
 
 const spans = new Map();
