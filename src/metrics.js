@@ -9,7 +9,9 @@ const spans = new Map();
 
 class Metrics {
     constructor() {
-        this.tracer = initTracerFromEnv({}, {
+        this.tracer = initTracerFromEnv({
+            serviceName
+        }, {
             metrics,
             logger: {
                 info: function logInfo(msg) {
