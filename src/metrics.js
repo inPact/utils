@@ -2,24 +2,14 @@ const initTracerFromEnv = require("jaeger-client").initTracerFromEnv;
 const client = require("prom-client");
 const PrometheusMetricsFactory = require("jaeger-client").PrometheusMetricsFactory;
 
-const serviceName = process.env.TABIT_SERVICE_NAME || "TABIT_SERVICE_NAME";
+const serviceName = process.env.JAEGER_SERVICE_NAME;
 const metrics = new PrometheusMetricsFactory(client, serviceName);
 
 const spans = new Map();
 
 class Metrics {
     constructor() {
-        this.tracer = initTracerFromEnv({
-            disable: false,
-            serviceName,
-            sampler: {
-                type: "const",
-                param: 1,
-            },
-            reporter: {
-                logSpans: false, // this logs whenever we send a span
-            },
-        }, {
+        this.tracer = initTracerFromEnv({}, {
             metrics,
             logger: {
                 info: function logInfo(msg) {
