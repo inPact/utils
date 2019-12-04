@@ -64,6 +64,12 @@ class Metrics {
             percentiles: [0.01, 0.1, 0.9, 0.99],
             labelNames: ["serviceName", "organization", "api", "span"]
         });
+        this.cacheRetrieveSummary = new client.Summary({
+            name: "cache_retrieve_summary",
+            help: "service flow ms",
+            percentiles: [0.01, 0.1, 0.9, 0.99],
+            labelNames: ["serviceName", "organization", "name"]
+        });
     }
 
     startSpan({name, id, parentId, tags = {}}) {
@@ -100,7 +106,7 @@ class Metrics {
     }
 
     cacheHitInc({organization, name}) {
-        this.cacheHitCount.inc({serviceName, name});
+        this.cacheHitCount.inc({serviceName, organization, name});
     }
 
     cacheMissInc({organization, name}) {
@@ -113,6 +119,10 @@ class Metrics {
 
     resourceLockStartTimer({organization, resource}) {
         return this.resourceLockSummary.startTimer({serviceName, organization, resource});
+    }
+
+     cacheRetrieveStartTimer({organization, name}) {
+        return this.cacheRetrieveSummary.startTimer({serviceName, organization, name});
     }
 
     spanTimer({organization, name, childOf, tags = {}}) {
