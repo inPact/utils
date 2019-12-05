@@ -2,7 +2,6 @@
   "name": "@tabit/utils",
   "version": "3.2.8",
   "description": "general utility functions",
-  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -10,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/inPact/utils.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   },
   "author": "",
   "license": "MIT",
