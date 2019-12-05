@@ -70,17 +70,11 @@ class Metrics {
             percentiles: [0.01, 0.1, 0.9, 0.99],
             labelNames: ["serviceName", "organization", "name"]
         });
-       this.dbReadSummary = new client.Summary({
-            name: "db_read_summary",
-            help: "db read",
+       this.dbCommandSummary = new client.Summary({
+            name: "db_command_summary",
+            help: "db command",
             percentiles: [0.01, 0.1, 0.9, 0.99],
-            labelNames: ["serviceName", "organization", "collection"]
-        });
-       this.dbWriteSummary = new client.Summary({
-            name: "db_write_summary",
-            help: "db read",
-            percentiles: [0.01, 0.1, 0.9, 0.99],
-            labelNames: ["serviceName", "organization", "collection"]
+            labelNames: ["serviceName", "organization", "collection", "command"]
         });
     }
 
@@ -136,12 +130,8 @@ class Metrics {
      cacheRetrieveStartTimer({organization, name}) {
         return this.cacheRetrieveSummary.startTimer({serviceName, organization, name});
     }
-     dbReadStartTimer({organization, collection}) {
-        return this.dbReadSummary.startTimer({serviceName, organization, collection});
-    }
-
-     dbWriteStartTimer({organization, collection}) {
-        return this.dbWriteSummary.startTimer({serviceName, organization, collection});
+     dbCommandStartTimer({organization, collection, command}) {
+        return this.dbCommandSummary.startTimer({serviceName, organization, collection, command});
     }
 
     spanTimer({organization, name, childOf, tags = {}}) {
