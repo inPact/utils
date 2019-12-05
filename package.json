@@ -2,6 +2,7 @@
   "name": "@tabit/utils",
   "version": "3.2.8",
   "description": "general utility functions",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "mocha"
