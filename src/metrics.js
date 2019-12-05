@@ -110,7 +110,7 @@ class Metrics {
     }
 
     cacheMissInc({organization, name}) {
-        this.cacheMissCount.inc({serviceName, name});
+        this.cacheMissCount.inc({serviceName, organization, name});
     }
 
     cacheGetDataInc({organization, name}) {
