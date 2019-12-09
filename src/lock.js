@@ -1,6 +1,6 @@
 const Promise = require('bluebird');
-const lock = new (require('async-lock'))({ Promise: Promise });
-const debug = require('debug')('utils');
+const lock = new (require('async-lock'))({ Promise: Promise, maxPending: 5000 });
+const debug = require('debug')('tabit:utils');
 const randomstring = require('randomstring');
 const logger = require('winston');
 
@@ -34,7 +34,7 @@ function debugLockAcquired(id, lockName) {
     if (debug.enabled) {
         counter--;
         if (id)
-            debug(`Double-check-lock ${id}: lock acquired on ${lockName}`);
+            debug(`Double-check-lock ${id}: lock acquired on ${lockName}. Total pending locks: ${counter}`);
     }
 }
 
@@ -50,6 +50,10 @@ function debugLockAcquired(id, lockName) {
  */
 module.exports = {
     internal: lock,
+
+    get traceCounter() {
+        return counter;
+    },
 
     async getWithDoubleCheck(getter, namespace, initializer, setter) {
         let val = await getter();
@@ -78,8 +82,13 @@ module.exports = {
         } catch (e) {
             if (e.message === 'Too much pending tasks') {
                 logger.error(`async lock exploded on lock "${lockId}" with name "${namespace}". ${e.stack}`);
+                if (debug.enabled)
+                    counter--;
+
                 return await action();
             }
+
+            throw e;
         }
     }
 };
