@@ -71,14 +71,14 @@ module.exports = {
     async acquire(namespace, action) {
         let lockId = debugLocking(namespace);
         try {
-            return await lock.acquire(namespace, () => {
+            return await lock.acquire(namespace, async () => {
                 debugLockAcquired(lockId, namespace);
-                return action();
+                return await action();
             })
         } catch (e) {
             if (e.message === 'Too much pending tasks') {
                 logger.error(`async lock exploded on lock "${lockId}" with name "${namespace}". ${e.stack}`);
-                return action();
+                return await action();
             }
         }
     }
