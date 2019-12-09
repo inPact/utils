@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/inPact/utils.git"
   },
+  "publishConfig": {
+    "access": "restricted"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
