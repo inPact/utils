@@ -1,3 +1,6 @@
+### 3.2.12
+* lock: await the specified action; separate pending-lock from open-lock traces
+
 ## 3.2.0
 * added reflect.getCallingFunctionNameAndLocation
 
