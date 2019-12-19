@@ -1,3 +1,6 @@
+## 3.3.0
+* removed metrics
+
 ### 3.2.12
 * lock: await the specified action; separate pending-lock from open-lock traces
 
