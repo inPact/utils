@@ -1,3 +1,7 @@
+## 3.4.0
+* split collection-related functions out of 'extend' into 'arrays'
+* added arrays.replaceElement and arrays.replaceElementBy
+
 ## 3.3.0
 * removed metrics
 

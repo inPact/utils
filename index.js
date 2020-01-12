@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const extend = require('./src/extend'),
     entities = require('./src/entities'),
+    arrays = require('./src/arrays'),
     errors = require('./src/errors'),
     promises = require('./src/promises'),
     strings = require('./src/strings'),
@@ -13,8 +14,8 @@ const extend = require('./src/extend'),
 
 const self = {
     trace, lock, time,
-    extend, entities, errors, promises, strings, fs, math, reflect,
-    ...extend, ...entities, ...errors, ...promises, ...strings, ...fs, ...math, ...reflect
+    extend, entities, errors, promises, strings, fs, math, reflect, arrays,
+    ...extend, ...entities, ...errors, ...promises, ...strings, ...fs, ...math, ...reflect, ...arrays
 };
 
 function buildMoredash() {
