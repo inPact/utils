@@ -163,20 +163,50 @@ module.exports = {
         return results;
     },
 
-    replaceElement(arr, replacement, matcher) {
-        let index = _.findIndex(arr, matcher);
+    /**
+     * replace element {@param replacement} in {@param array} using {@param matcher}
+     * @param array
+     * @param replacement
+     * @param matcher {String|Function} - if a string is provided, will be used as the property in {@param replacement}
+     * to match against.
+     * @returns {number} - the index of the replaced element, or -1 if no element was found.
+     */
+    replaceElementBy(array, replacement, matcher) {
+        if (!array || !array.length)
+            return -1;
+
+        if (typeof matcher === 'string') {
+            let prop = matcher;
+            matcher = entry => entry[prop] === replacement[prop];
+        }
+
+        let index = _.findIndex(array, matcher);
         if (index > -1)
-            arr[index] = replacement;
+            array[index] = replacement;
 
         return index;
     },
 
-    replaceElementBy(arr, replacement, property) {
-        let index = _.findIndex(arr, x => x[property] === replacement[property]);
-        if (index > -1)
-            arr[index] = replacement;
+    replaceOrAddBy(arr, entry, property) {
+        if (!arr || !arr.length)
+            return;
 
-        return index;
+        let result = this.replaceElementBy(arr, entry, property);
+        if (result < 0)
+            arr.push(entry);
+    },
+
+    /**
+     * Adds {@param entry} to {@param array} if an identical element doesn't already exist.
+     * @param array
+     * @param entry
+     */
+    addToSet(array, entry) {
+        if (!array)
+            return;
+
+        if (!_.find(array, x => _.isEqual(x, entry)))
+            array.push(entry);
     }
 };
 
