@@ -1,3 +1,6 @@
+## 3.6.0
+* added strings.smartSplit
+
 ## 3.5.0
 * added arrays.addToSet
 * merged arrays.replaceElement and arrays.replaceElementBy

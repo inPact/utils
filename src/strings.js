@@ -23,7 +23,7 @@ module.exports = {
         }, 2);
     },
 
-    stringifyInstances (arr, options = {}) {
+    stringifyInstances(arr, options = {}) {
         return this.stringifyArray(arr, {
             stringify: val => val.name || (val.constructor && val.constructor.name) || val,
             ...options
@@ -108,5 +108,9 @@ module.exports = {
 
     toMilliseconds(any) {
         return typeof any === 'number' ? any : ms(any);
+    },
+
+    smartSplit(str, separator = ',') {
+        return str.toString().split(separator).map(x => x.trim()).filter(x => x);
     }
 };
