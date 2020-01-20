@@ -111,6 +111,6 @@ module.exports = {
     },
 
     smartSplit(str, separator = ',') {
-        return str.toString().split(separator).map(x => x.trim()).filter(x => x);
+        return (str || '').toString().split(separator).map(x => x.trim()).filter(x => x);
     }
 };

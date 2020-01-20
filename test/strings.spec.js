@@ -15,7 +15,7 @@ describe('strings: ', function () {
         res = strings.smartSplit('hello, ,world', ',');
         res.should.deep.equal(['hello', 'world']);
 
-        res = strings.smartSplit('hello, world, ,   ,', ',');
+        res = strings.smartSplit('hello, world, ,   ,');
         res.should.deep.equal(['hello', 'world']);
 
         res = strings.smartSplit('', ',');
@@ -28,6 +28,20 @@ describe('strings: ', function () {
     it('smart split should not throw error when given an object', async function () {
         try {
             strings.smartSplit({ hello: 'world' }, ',');
+        } catch(e) {
+            assert.fail(e);
+        }
+    });
+
+    it('smart split should not throw error when given undefined / null', async function () {
+        try {
+            strings.smartSplit(undefined);
+        } catch(e) {
+            assert.fail(e);
+        }
+
+        try {
+            strings.smartSplit(null);
         } catch(e) {
             assert.fail(e);
         }

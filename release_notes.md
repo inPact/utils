@@ -1,3 +1,6 @@
+## 3.6.1
+* support undefined / null in strings.smartSplit
+
 ## 3.6.0
 * added strings.smartSplit
 
