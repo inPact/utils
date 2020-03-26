@@ -51,4 +51,34 @@ describe('extend: ', function () {
             x: { 1: 'z' }
         });
     });
+
+    it('hasDiff should return true if 2 objects is different', async function () {
+        let obj1 = {
+            a: { b: { c: 3 }, r: 1 },
+            x: ['y', 'z']
+        };
+
+        let obj2 = {
+            a: { b: { d: 4 }, r: 1 },
+            x: ['y', 'q']
+        };
+
+        let res = extend.hasDiff(obj1, obj2);
+        res.should.equal(true);
+    });
+
+    it('hasDiff should return false if 2 objects is equals', async function () {
+        let obj1 = {
+            a: { b: { c: 3 }, r: 1 },
+            x: ['y', 'q']
+        };
+
+        let obj2 = {
+            a: { b: { c: 3 }, r: 1 },
+            x: ['y', 'q']
+        };
+
+        let res = extend.hasDiff(obj1, obj2);
+        res.should.equal(false);
+    });
 });

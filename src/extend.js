@@ -329,10 +329,22 @@ module.exports = {
      * source: https://gist.github.com/Yimiprod/7ee176597fef230d1451
      */
     diff(first, second) {
+        if (!first) return second;
+        if (!second) return first;
         return _.transform(first, (result, value, key) => {
             if (!_.isEqual(value, second[key]))
                 result[key] = _.isObject(value) && _.isObject(second[key]) ? this.diff(value, second[key]) : value;
         }, {});
+    },
+
+    /**
+     * check if object are different
+     * @param  {Object} first - Object compared
+     * @param  {Object} second - Object to compare with
+     * @return {Object} Returns if first and second are different
+     */
+    hasDiff(first, second) {
+        return !this.isEmptyRecursive(this.diff(first, second));
     },
 
     /**
