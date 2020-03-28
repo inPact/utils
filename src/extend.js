@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const Readable = require('stream').Readable;
-
+const entities = require('./entities');
 module.exports = {
     mergeGroups(first, second, firstKey, secondKey) {
         return _.merge(first, second, (x, y) => {
@@ -346,8 +346,8 @@ module.exports = {
     hasDiff(first, second) {
         if ((typeof first == 'object' && first != null) &&
             (typeof second == 'object' && second != null)) {
-            const firstKeys = Object.keys(first);
-            const secondKeys = Object.keys(second);
+            const firstKeys = Object.keys(entities.toObject(first));
+            const secondKeys = Object.keys(entities.toObject(second));
 
             if (firstKeys.length !== secondKeys.length) {
                 return true;
