@@ -344,7 +344,23 @@ module.exports = {
      * @return {Object} Returns if first and second are different
      */
     hasDiff(first, second) {
-        return !this.isEmptyRecursive(this.diff(first, second));
+        if ((typeof first == 'object' && first != null) &&
+            (typeof second == 'object' && second != null)) {
+            const firstKeys = Object.keys(first);
+            const secondKeys = Object.keys(second);
+
+            if (firstKeys.length !== secondKeys.length) {
+                return true;
+            }
+
+            for (let objKey of firstKeys) {
+                if (this.hasDiff(first[objKey], second[objKey]))
+                    return true;
+            }
+            return false;
+        } else {
+            return first !== second;
+        }
     },
 
     /**
