@@ -344,23 +344,19 @@ module.exports = {
      * @return {Object} Returns if first and second are different
      */
     hasDiff(first, second) {
-        if ((typeof first == 'object' && first != null) &&
-            (typeof second == 'object' && second != null)) {
-            const firstKeys = Object.keys(entities.toObject(first));
-            const secondKeys = Object.keys(entities.toObject(second));
-
-            if (firstKeys.length !== secondKeys.length) {
-                return true;
-            }
-
-            for (let objKey of firstKeys) {
-                if (this.hasDiff(first[objKey], second[objKey]))
-                    return true;
-            }
-            return false;
-        } else {
+        if (!_.isObject(first) || !first || !_.isObject(second) || !second)
             return first !== second;
+        const firstKeys = Object.keys(entities.toObject(first));
+        const secondKeys = Object.keys(entities.toObject(second));
+        if (firstKeys.length !== secondKeys.length) {
+            return true;
         }
+        for (let objKey of firstKeys) {
+            if (this.hasDiff(first[objKey], second[objKey]))
+                return true;
+        }
+        return false;
+
     },
 
     /**
@@ -375,7 +371,8 @@ module.exports = {
                 return val;
         }
     }
-};
+}
+;
 
 function traverseEntry(obj, val, key, func, result, { modifyObject } = {}) {
     let res = func(val, key, obj);
