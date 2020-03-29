@@ -371,8 +371,7 @@ module.exports = {
                 return val;
         }
     }
-}
-;
+};
 
 function traverseEntry(obj, val, key, func, result, { modifyObject } = {}) {
     let res = func(val, key, obj);
