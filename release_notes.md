@@ -1,4 +1,7 @@
-## 3.6.1
+### 3.6.2
+* adding hasDiff
+
+### 3.6.1
 * support undefined / null in strings.smartSplit
 
 ## 3.6.0
