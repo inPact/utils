@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const Readable = require('stream').Readable;
-
+const entities = require('./entities');
 module.exports = {
     mergeGroups(first, second, firstKey, secondKey) {
         return _.merge(first, second, (x, y) => {
@@ -329,10 +329,34 @@ module.exports = {
      * source: https://gist.github.com/Yimiprod/7ee176597fef230d1451
      */
     diff(first, second) {
+        if (!first) return second;
+        if (!second) return first;
         return _.transform(first, (result, value, key) => {
             if (!_.isEqual(value, second[key]))
                 result[key] = _.isObject(value) && _.isObject(second[key]) ? this.diff(value, second[key]) : value;
         }, {});
+    },
+
+    /**
+     * check if object are different
+     * @param  {Object} first - Object compared
+     * @param  {Object} second - Object to compare with
+     * @return {Object} Returns if first and second are different
+     */
+    hasDiff(first, second) {
+        if (!_.isObject(first) || !first || !_.isObject(second) || !second)
+            return first !== second;
+        const firstKeys = Object.keys(entities.toObject(first));
+        const secondKeys = Object.keys(entities.toObject(second));
+        if (firstKeys.length !== secondKeys.length) {
+            return true;
+        }
+        for (let objKey of firstKeys) {
+            if (this.hasDiff(first[objKey], second[objKey]))
+                return true;
+        }
+        return false;
+
     },
 
     /**
