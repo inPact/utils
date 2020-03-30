@@ -71,4 +71,16 @@ describe('arrays should: ', function () {
         arrays.addToSet(array, { b: 2, c: 2 });
         array.should.deep.equal([{ a: 1 }, { b: 2 }, { b: 1 }, { b: 2, c: 2 }])
     });
+
+    it('isArraysOfObjectsEqual', async function () {
+
+        let array1 = [{ a: 1, val: 'a' }, { b: 2, val: 'a' }];
+        let array2 = [{ a: 1, val: 'b' }, { b: 2, val: 'a' }];
+
+        arrays.isArraysOfObjectsEqual(array1, array2).should.equal(false);
+
+        array2 = [{ a: 1, val: 'a' }, { b: 2, val: 'a' }];
+
+        arrays.isArraysOfObjectsEqual(array1, array2).should.equal(true);
+    });
 });

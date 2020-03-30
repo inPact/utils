@@ -207,8 +207,23 @@ module.exports = {
 
         if (!_.find(array, x => _.isEqual(x, entry)))
             array.push(entry);
+    },
+
+    /**
+     * check if two arrays of objects is equals
+     * @param a
+     * @param b
+     * @returns {boolean}
+     */
+    isArraysOfObjectsEqual(a, b) {
+        return a.every((e, i) => typeof b[i] === "object" ? compareObjects(b[i], e) : b[i] === e);
     }
 };
+
+function compareObjects(a, b) {
+    let ok = Object.keys(a);
+    return typeof b === "object" && ok.length === Object.keys(b).length ? ok.every(k => a[k] === b[k]) : false;
+}
 
 function sumNumbers(x, y, key) {
     if (_.isNumber(x) && _.isNumber(y))
