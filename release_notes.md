@@ -1,3 +1,6 @@
+## 3.7.0
+* added arrays.isArraysOfObjectsEqual
+
 ## 3.6.1
 * support undefined / null in strings.smartSplit
 
