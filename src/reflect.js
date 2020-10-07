@@ -1,4 +1,5 @@
 const path = require('path');
+const util = require('util');
 
 module.exports = {
     getCallStack() {
@@ -13,6 +14,14 @@ module.exports = {
         Error.prepareStackTrace = orig;
 
         return stack;
+    },
+
+    getPrintableStack() {
+        let err = new Error;
+        err.name = 'Trace';
+        err.message = util.format.apply(this, arguments);
+        Error.captureStackTrace(err, getPrintableStack);
+        return err.stack;
     },
 
     /**

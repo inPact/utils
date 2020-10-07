@@ -10,11 +10,12 @@ const extend = require('./src/extend'),
     reflect = require('./src/reflect'),
     trace = require('./src/mongoose_trace'),
     lock = require('./src/lock'),
-    time = require('./src/time');
+    time = require('./src/time'),
+    Retry = require('./src/retry');
 
 const self = {
     trace, lock, time,
-    extend, entities, errors, promises, strings, fs, math, reflect, arrays,
+    extend, entities, errors, promises, strings, fs, math, reflect, arrays, Retry,
     ...extend, ...entities, ...errors, ...promises, ...strings, ...fs, ...math, ...reflect, ...arrays
 };
 
