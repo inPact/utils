@@ -48,6 +48,11 @@ module.exports = class Retry {
                 return result;
             })
             .catch(e => {
+                if (++this.current.attempt > this.options.retries ||
+                    !this.options.retryErrorMatch(e) ||
+                    (Date.now() - this.current.start) > this.options.maxTime)
+                    throw e;
+
                 let message = this.options.title +
                               `Retry attempt ${this.current.attempt} failed. Waiting ${this.options.delay}ms before next attempt`;
 
@@ -55,12 +60,6 @@ module.exports = class Retry {
                     message += ` Error: ${e.stack}, options: ${JSON.stringify(this.options)}`;
 
                 logger.warn(message);
-
-                if (++this.current.attempt > this.options.retries ||
-                    !this.options.retryErrorMatch(e) ||
-                    (Date.now() - this.current.start) > this.options.maxTime)
-                    throw e;
-
                 return Promise.delay(this.options.delay);
             })
     }

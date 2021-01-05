@@ -1,3 +1,6 @@
+### 3.7.1
+* Retry: print wait message only if actually waiting
+
 ## 3.7.0
 * add Retry
 
