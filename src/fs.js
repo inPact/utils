@@ -1,5 +1,5 @@
 const _ = require('lodash');//.runInContext();
-const logger = require('winston');
+const logger = require('./logger');
 const fs = require('fs');
 const path = require('path');
 
