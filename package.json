@@ -1,5 +1,5 @@
 {
-  "name": "@tabit/utils",
+  "name": "@inpact/utils",
   "version": "3.8.0",
   "description": "general utility functions",
   "main": "index.js",
@@ -11,6 +11,7 @@
     "url": "git+https://github.com/inPact/utils.git"
   },
   "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "author": "",
