@@ -1,3 +1,6 @@
+### 3.8.0
+* make isFalse and isTrue behave more predictably; add isFalseOrEmpty
+
 ### 3.7.1
 * Retry: print wait message only if actually waiting
 

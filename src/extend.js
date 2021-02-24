@@ -30,14 +30,37 @@ module.exports = {
         }, {});
     },
 
+    /**
+     * Returns true for "true", "1", or the Boolean value true
+     * @param value
+     * @returns {boolean}
+     */
     isTrue(value) {
-        if (value === true) return true;
-        return value && (value.toString().toLowerCase() === 'true' || value.toString() === '1');
+        if (value === true)
+            return true;
+
+        return !!(value && (value.toString().toLowerCase() === 'true' || value.toString() === '1'));
     },
 
+    /**
+     * Returns true for "false", "0", or the Boolean value false
+     * @param value
+     * @returns {boolean|boolean}
+     */
     isFalse(value) {
-        if (value === false) return true;
-        return ((value !== null) && (undefined != value)) && (value.toString().toLowerCase() === 'false' || value.toString() === '0')
+        if (value === false)
+            return true;
+
+        return !!((value !== null) && (undefined != value)) && (value.toString().toLowerCase() === 'false' || value.toString() === '0')
+    },
+
+    /**
+     * Similar to isFalse but also returns true for undefined and null
+     * @param value
+     * @returns {boolean}
+     */
+    isFalseOrEmpty(value) {
+        return !this.isTrue(value);
     },
 
     parseBoolean(value) {

@@ -51,4 +51,44 @@ describe('extend: ', function () {
             x: { 1: 'z' }
         });
     });
+
+    it('isTrue should return boolean', async function () {
+        extend.isTrue(1).should.equal(true);
+        extend.isTrue(true).should.equal(true);
+        extend.isTrue('true').should.equal(true);
+
+        extend.isTrue(0).should.equal(false);
+        extend.isTrue(false).should.equal(false);
+        extend.isTrue('false').should.equal(false);
+
+        extend.isTrue(null).should.equal(false);
+        extend.isTrue().should.equal(false);
+    });
+
+    it('isFalse should return boolean', async function () {
+        extend.isFalse(1).should.equal(false);
+        extend.isFalse(true).should.equal(false);
+        extend.isFalse('true').should.equal(false);
+
+        extend.isFalse(0).should.equal(true);
+        extend.isFalse(false).should.equal(true);
+        extend.isFalse('false').should.equal(true);
+
+        extend.isFalse(null).should.equal(false);
+        extend.isFalse().should.equal(false);
+    });
+
+    it('isFalseOrEmpty should return true for undefined and null', async function () {
+        extend.isFalseOrEmpty(1).should.equal(false);
+        extend.isFalseOrEmpty(true).should.equal(false);
+        extend.isFalseOrEmpty('true').should.equal(false);
+
+        extend.isFalseOrEmpty(0).should.equal(true);
+        extend.isFalseOrEmpty(false).should.equal(true);
+        extend.isFalseOrEmpty('false').should.equal(true);
+
+        extend.isFalseOrEmpty(null).should.equal(true);
+        extend.isFalseOrEmpty().should.equal(true);
+    });
+
 });
