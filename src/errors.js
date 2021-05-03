@@ -1,13 +1,4 @@
 const _ = require('lodash');//.runInContext();
-const logger = require('winston');
-
-exports.formatError = function (e, options) {
-    let error = logger.exception.getAllInfo(e);
-    if (!options || options.trace !== true)
-        delete error.trace;
-
-    return error;
-};
 
 exports.errorToJsonObject = function (error) {
     if (!error) return error;
