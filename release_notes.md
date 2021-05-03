@@ -1,3 +1,6 @@
+## 4.0.0
+* (BREAKING CHANGE) Updated to latest mongoose version to remove warnings
+
 ### 3.7.1
 * Retry: print wait message only if actually waiting
 
