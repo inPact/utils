@@ -1,3 +1,7 @@
+### 3.7.2
+* winston internal fix
+* (this version is intended to replace the current latest v4.0.2 which is not compatible with ros due to the mongoose update)
+
 ### 3.7.1
 * Retry: print wait message only if actually waiting
 
