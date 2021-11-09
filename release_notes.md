@@ -1,3 +1,8 @@
+# @tabit/utils release notes
+
+### 3.7.3
+* add winston transports only if absent
+
 ### 3.7.2
 * winston internal fix
 * (this version is intended to replace the current latest v4.0.2 which is not compatible with ros due to the mongoose update)
