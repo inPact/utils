@@ -1,5 +1,8 @@
 # @tabit/utils release notes
 
+### 3.7.4
+* fs: ignore non-js files
+
 ### 3.7.3
 * add winston transports only if absent
 

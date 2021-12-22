@@ -1,4 +1,4 @@
-const _ = require('lodash');//.runInContext();
+const _ = require('lodash');
 const logger = require('./logger');
 const fs = require('fs');
 const path = require('path');
@@ -32,6 +32,9 @@ exports.mapDir = function (absoluteDirPath, options = {}) {
         }
 
         try {
+            if (path.extname(entryPath) !== '.js')
+                return;
+
             let name = path.basename(entry, path.extname(entry));
             let key = options.camelCase === false ? name : _.camelCase(name);
             result[key] = require(entryPath);
@@ -67,22 +70,26 @@ exports.loadModules = function (libPath, options = {}, modules = {}) {
             return this.loadModules(entryPath, options, modules);
         }
 
-        if (!isRegex || matcher.test(entryPath)) {
-            logger.info('requiring path: ' + entryPath);
-            try {
-                let module = require(entryPath);
+        if (path.extname(entryPath) !== '.js')
+            return;
 
-                if (!matcher || isRegex || matcher(module)) {
-                    let key = path.parse(entryPath).name;
+        if (isRegex && !matcher.test(entryPath))
+            return;
 
-                    if (camelCase)
-                        key = _.camelCase(key);
+        logger.info('requiring path: ' + entryPath);
+        try {
+            let module = require(entryPath);
 
-                    modules[key] = require(entryPath);
-                }
-            } catch (e) {
-                logger.error(`Error loading module "${entryPath}": ${e.stack}`)
+            if (!matcher || isRegex || matcher(module)) {
+                let key = path.parse(entryPath).name;
+
+                if (camelCase)
+                    key = _.camelCase(key);
+
+                modules[key] = require(entryPath);
             }
+        } catch (e) {
+            logger.error(`Error loading module "${entryPath}": ${e.stack}`)
         }
     });
 
