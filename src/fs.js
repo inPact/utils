@@ -23,7 +23,8 @@ exports.mapDir = function (absoluteDirPath, options = {}) {
 
     fs.readdirSync(absoluteDirPath).forEach(entry => {
         let entryPath = path.join(absoluteDirPath, entry);
-        if (fs.statSync(entryPath).isDirectory()) {
+        let isDirectory = fs.statSync(entryPath).isDirectory();
+        if (isDirectory) {
             if (options.recursive)
                 return _.merge(result, this.mapDir(entryPath, options));
 
@@ -32,7 +33,7 @@ exports.mapDir = function (absoluteDirPath, options = {}) {
         }
 
         try {
-            if (path.extname(entryPath) !== '.js')
+            if (!isDirectory && path.extname(entryPath) !== '.js')
                 return;
 
             let name = path.basename(entry, path.extname(entry));

@@ -34,10 +34,16 @@ describe('fs: ', function () {
             should.exist(modules['veryHappy']);
         });
 
-
         it('should ignore non-js files', async function () {
             const modules = fs.mapDir(path.join(__dirname, './a_test_dir'));
             Object.keys(modules).length.should.equal(2);
+        });
+
+        it('should load files in directories', async function () {
+            const modules = fs.mapDir(path.join(__dirname, './nested_test_dir'), { loadDirs: true });
+            Object.keys(modules).length.should.equal(2);
+            should.exist(modules['matchMe']);
+            should.exist(modules['veryHappy']);
         });
     });
 });
