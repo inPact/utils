@@ -1156,10 +1156,10 @@ mocha@^6.0.2:
     yargs-parser "11.1.1"
     yargs-unparser "1.5.0"
 
-moment-timezone@0.5.17:
-  version "0.5.17"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.17.tgz#3c8fef32051d84c3af174d91dc52977dcb0ad7e5"
-  integrity sha512-Y/JpVEWIOA9Gho4vO15MTnW1FCmHi3ypprrkUaxsZ1TKg3uqC8q/qMBjTddkHoiwwZN3qvZSr4zJP7x9V3LpXA==
+moment-timezone@0.5.35:
+  version "0.5.35"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.35.tgz#6fa2631bdbe8ff04f6b8753f7199516be6dc9839"
+  integrity sha512-cY/pBOEXepQvlgli06ttCTKcIf8cD1nmNwOKQQAdHBqYApQSpAqotBMX0RJZNgMp6i0PlZuf1mFtnlyEkwyvFw==
   dependencies:
     moment ">= 2.9.0"
 
