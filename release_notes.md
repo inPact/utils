@@ -1,5 +1,8 @@
 # @tabit/utils release notes
 
+### 3.7.4
+* new ObjectId to support mongoose 7
+
 ### 3.7.3
 * add winston transports only if absent
 
