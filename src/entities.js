@@ -25,7 +25,7 @@ module.exports = {
             id = this.getId(id);
 
         if (this.isObjectId(id))
-            return ObjectId(id);
+            return new ObjectId(id);
 
         if (id != null)
             logger.warn(`object ${id} could not be parsed to an ObjectId at: \r\n${(new Error().stack.slice(10))}`);
@@ -114,6 +114,6 @@ module.exports = {
     },
 
     emptyObjectId() {
-        return ObjectId('000000000000000000000000');
+        return new ObjectId('000000000000000000000000');
     }
 };
