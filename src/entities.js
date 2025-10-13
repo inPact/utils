@@ -21,8 +21,13 @@ module.exports = {
     },
 
     getObjectId(id) {
-        if (this.isObjectId(id)) return id;
         id = this.getId(id);
+
+        if (id instanceof ObjectId)
+            return id;
+
+        if (this.isObjectId(id))
+            return new ObjectId(id);
 
         if (id != null)
             logger.warn(`object ${id} could not be parsed to an ObjectId at: \r\n${(new Error().stack.slice(10))}`);
