@@ -1,6 +1,6 @@
 # @tabit/utils release notes
 
-### 3.7.4
+## 3.8.0
 * new ObjectId to support mongoose 7
 
 ### 3.7.3
